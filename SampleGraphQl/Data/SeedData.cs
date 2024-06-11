@@ -48,6 +48,17 @@ public class SeedData
                 context.SaveChanges();
             }
 
+            if (!context.Tags.Any())
+            {
+                context.Tags.AddRange(
+                new Entities.Tag
+                {
+                    ArticleId = 1,
+                    CreateAt = DateTime.Now,
+                    Name = "Tag Test",
+                });
+                context.SaveChanges();
+            }
         }
     }
 }

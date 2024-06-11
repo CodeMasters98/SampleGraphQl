@@ -14,6 +14,7 @@ public class Article
     public int? Like { get; set; }
     public DateTime? PublishDate { get; set; }
 
+    public ICollection<Tag> Tags { get; set; }
     public long? AuthorId { get; set; }
     public User Author { get; set; }
 

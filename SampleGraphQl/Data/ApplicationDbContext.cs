@@ -12,6 +12,7 @@ public class ApplicationDbContext : DbContext
     #region DbSet
     public DbSet<User> Users { get; set; }
     public DbSet<Article> Articles { get; set; }
+    public DbSet<SampleGraphQl.Entities.Tag> Tags { get; set; }
     #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
