@@ -3,6 +3,7 @@ using SampleGraphQl.Data;
 using SampleGraphQl.Entities;
 using SampleGraphQl.GraphQL.Articles;
 using SampleGraphQl.GraphQL.Users.Add;
+using SampleGraphQl.GraphQL.Users.Delete;
 using SampleGraphQl.GraphQL.Users.Update;
 
 namespace SampleGraphQl.GraphQL;
@@ -38,9 +39,22 @@ public class Mutation
 
         return new UpdateUserPayload(user);
     }
+
+    public async Task<DeleteUserPayload> DeleteUserAsync(DeleteUserInput input, [Service] ApplicationDbContext _context)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == input.Id);
+        if (user is null)
+            return new DeleteUserPayload("Not Deleted!!");
+
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+
+        return new DeleteUserPayload("Deleted!!");
+    }
     #endregion
 
-    #region
+
+    #region Article
     public async Task<AddArticlePayload> AddArticleAsync(AddArticleInput input, [Service] ApplicationDbContext _context)
     {
         var aricle = new Article

@@ -20,4 +20,10 @@ public class Query
     public IQueryable<Article> Articles([Service] ApplicationDbContext _context)
         => _context.Articles;
 
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
+    public IQueryable<Entities.Tag> Tags([Service] ApplicationDbContext _context)
+        => _context.Tags;
+
 }
