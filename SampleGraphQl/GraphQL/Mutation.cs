@@ -40,6 +40,8 @@ public class Mutation
         return new UpdateUserPayload(user);
     }
 
+
+
     public async Task<DeleteUserPayload> DeleteUserAsync(DeleteUserInput input, [Service] ApplicationDbContext _context)
     {
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == input.Id);
