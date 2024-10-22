@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDb")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("gRPCParham"));
 
 builder.Services.AddGraphQLServer()
                .AddQueryType<SampleGraphQl.GraphQL.Query>()

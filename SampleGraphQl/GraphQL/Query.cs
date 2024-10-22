@@ -26,4 +26,23 @@ public class Query
     public IQueryable<Entities.Tag> Tags([Service] ApplicationDbContext _context)
         => _context.Tags;
 
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
+    public IEnumerable<GroupedUser> GetUsersGroupedByAge([Service] ApplicationDbContext _context)
+    {
+        var users = _context.Set<User>().ToList();
+        return users.GroupBy(u => u.Age)
+                    .Select(g => new GroupedUser
+                    {
+                        Age = g.Key,
+                        Users = g.ToList()
+                    });
+    }
+}
+
+public class GroupedUser
+{
+    public int? Age { get; set; }
+    public List<User> Users { get; set; }
 }

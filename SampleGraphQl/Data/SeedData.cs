@@ -20,6 +20,22 @@ public class SeedData
                     Family = "Family Test",
                     Name = "Name Test",
                     Phone = "0912"
+                },
+                new User
+                {
+                    Address = "Test Address 2",
+                    Age = 2,
+                    Family = "Family Test 2",
+                    Name = "Name Test 1",
+                    Phone = "0911"
+                },
+                new User
+                {
+                    Address = "Test Address 3",
+                    Age = 2,
+                    Family = "Family Test 3",
+                    Name = "Name Test 3",
+                    Phone = "0913"
                 });
                 context.SaveChanges();
             }
