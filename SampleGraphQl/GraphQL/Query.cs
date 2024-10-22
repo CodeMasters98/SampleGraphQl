@@ -15,6 +15,10 @@ public class Query
         => _context.Users;
 
     [UseProjection]
+    public User User([Service] ApplicationDbContext _context, int id)
+        => _context.Users.FirstOrDefault(u => u.Id == id);
+
+    [UseProjection]
     [UseFiltering]
     [UseSorting]
     public IQueryable<Article> Articles([Service] ApplicationDbContext _context)
