@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDb")));
+builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("ApplicationDb"));
 
 builder.Services.AddGraphQLServer()
                .AddQueryType<SampleGraphQl.GraphQL.Query>()
@@ -23,7 +23,6 @@ builder.Services.AddGraphQLServer()
                .AddSorting();
 
 var app = builder.Build();
-
 //Seed Data
 using (var scope = app.Services.CreateScope())
 {
