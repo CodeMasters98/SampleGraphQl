@@ -11,6 +11,17 @@ public class UserType : ObjectType<User>
 
         descriptor.Field(u => u.Name).Description("نام کاربر در این فیلد قرار دارد.");
 
+        descriptor.Field("fullName").Resolve(context =>
+        {
+            var user = context.Parent<User>();
+            return $"{user.Name} {user.Family}";
+        });
+
+        descriptor.Field("fullAge").Resolve(context =>
+        {
+            var user = context.Parent<User>();
+            return $"{user.Age} years old.";
+        });
     }
 
     private class Resolvers

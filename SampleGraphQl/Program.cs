@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SampleGraphQl.Data;
 using SampleGraphQl.GraphQL;
+using SampleGraphQl.GraphQL.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.AddGraphQLServer()
                .AddQueryType<SampleGraphQl.GraphQL.Query>()
                .AddMutationType<Mutation>()
                //.AddType<ArticleType>()
-               //.AddType<UserType>()
+               .AddType<UserType>()
                .AddProjections()
                .AddFiltering()
                .AddSorting();
